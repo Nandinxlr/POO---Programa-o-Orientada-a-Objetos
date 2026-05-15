@@ -1,1 +1,81 @@
 
+abstract class Veiculo {
+
+    protected double valorPecas;
+
+    public Veiculo(double valorPecas) {
+        this.valorPecas = valorPecas;
+    }
+
+    // Método polimórfico
+    public abstract double calcularServico();
+
+    public double getValorTotal() {
+        return valorPecas + calcularServico();
+    }
+}
+
+
+class Carro extends Veiculo {
+
+    public Carro(double valorPecas) {
+        super(valorPecas);
+    }
+
+    @Override
+    public double calcularServico() {
+        return valorPecas * 0.25;
+    }
+}
+
+
+class Motocicleta extends Veiculo {
+
+    public Motocicleta(double valorPecas) {
+        super(valorPecas);
+    }
+
+    @Override
+    public double calcularServico() {
+        return valorPecas * 0.15;
+    }
+}
+
+
+class Onibus extends Veiculo {
+
+    public Onibus(double valorPecas) {
+        super(valorPecas);
+    }
+
+    @Override
+    public double calcularServico() {
+        return valorPecas * 0.40;
+    }
+}
+
+
+public class Oficina {
+
+    public static void main(String[] args) {
+
+        Veiculo carro = new Carro(2000);
+        Veiculo moto = new Motocicleta(1000);
+        Veiculo onibus = new Onibus(5000);
+
+        System.out.println("=== CARRO ===");
+        System.out.println("Valor das peças: R$ " + carro.valorPecas);
+        System.out.println("Valor do serviço: R$ " + carro.calcularServico());
+        System.out.println("Valor total: R$ " + carro.getValorTotal());
+
+        System.out.println("\n=== MOTOCICLETA ===");
+        System.out.println("Valor das peças: R$ " + moto.valorPecas);
+        System.out.println("Valor do serviço: R$ " + moto.calcularServico());
+        System.out.println("Valor total: R$ " + moto.getValorTotal());
+
+        System.out.println("\n=== ÔNIBUS ===");
+        System.out.println("Valor das peças: R$ " + onibus.valorPecas);
+        System.out.println("Valor do serviço: R$ " + onibus.calcularServico());
+        System.out.println("Valor total: R$ " + onibus.getValorTotal());
+    }
+}
